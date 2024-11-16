@@ -1,0 +1,108 @@
+[gd_scene load_steps=16 format=3 uid="uid://dvlatt2kwipem"]
+
+[ext_resource type="Script" path="res://word/word.gd" id="1_78h6q"]
+[ext_resource type="PackedScene" uid="uid://belnx1xk6wgcw" path="res://Player/Player.tscn" id="1_nu6aa"]
+[ext_resource type="PackedScene" uid="uid://jfoia1tn0f15" path="res://sprites/explosion_effect/Enemy.tscn" id="2_0e8n5"]
+[ext_resource type="Texture2D" uid="uid://bwu54p0pynvgt" path="res://sprites/sky_background/parallax_parts/sky_color.png" id="3_1lk74"]
+[ext_resource type="Texture2D" uid="uid://dcy4ax1xscnep" path="res://sprites/sky_background/parallax_parts/mid_ground_cloud_1.png" id="4_52ssj"]
+[ext_resource type="Texture2D" uid="uid://yhj1w6oxjdpa" path="res://sprites/sky_background/parallax_parts/sun.png" id="4_selpa"]
+[ext_resource type="Texture2D" uid="uid://ddwkhxuhb7qt3" path="res://sprites/sky_background/parallax_parts/mid_ground_cloud_2.png" id="5_y201p"]
+[ext_resource type="Texture2D" uid="uid://dw0k86a08mi8k" path="res://sprites/sky_background/parallax_parts/mountain_with_hills/farground_mountains.png" id="7_a8rir"]
+[ext_resource type="Texture2D" uid="uid://n4g775bt8i3b" path="res://sprites/sky_background/parallax_parts/farground_cloud_1.png" id="9_cdhx0"]
+[ext_resource type="Texture2D" uid="uid://b0hqr7qqnl0ix" path="res://sprites/sky_background/parallax_parts/mountain_with_hills/foreground_mountains.png" id="9_l81up"]
+[ext_resource type="Texture2D" uid="uid://ndmoj5v3qj14" path="res://sprites/sky_background/parallax_parts/farground_cloud_2.png" id="10_5jxia"]
+[ext_resource type="PackedScene" uid="uid://decx7yqe3ypmj" path="res://Level/nivel.tscn" id="12_rga5m"]
+[ext_resource type="PackedScene" uid="uid://bgb4cbeve0uyv" path="res://coin/Coin.tscn" id="13_jijjy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3dv3t"]
+size = Vector2(1175, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t7ipw"]
+size = Vector2(1167.5, 31)
+
+[node name="Word" type="Node2D"]
+position = Vector2(1, 15)
+script = ExtResource("1_78h6q")
+enemy_scene = ExtResource("2_0e8n5")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(448, 344)
+scale = Vector2(122.857, 1)
+texture = ExtResource("3_1lk74")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+position = Vector2(288, 192)
+texture = ExtResource("4_selpa")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(456, 440)
+scale = Vector2(0.84375, 1)
+texture = ExtResource("4_52ssj")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2(456, 488)
+scale = Vector2(0.847656, 1.02321)
+texture = ExtResource("5_y201p")
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
+position = Vector2(456, 480)
+scale = Vector2(0.847656, 1)
+texture = ExtResource("7_a8rir")
+
+[node name="ParallaxLayer7" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer7"]
+position = Vector2(464, 572.75)
+scale = Vector2(0.847656, 1.23395)
+texture = ExtResource("9_l81up")
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer6"]
+position = Vector2(452, 112)
+scale = Vector2(0.839844, 1)
+texture = ExtResource("9_cdhx0")
+
+[node name="ParallaxLayer8" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer8"]
+position = Vector2(456, 208)
+scale = Vector2(0.835938, 1)
+texture = ExtResource("10_5jxia")
+
+[node name="Player" parent="." instance=ExtResource("1_nu6aa")]
+position = Vector2(159, 137)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(1, 18)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(574, -47)
+shape = SubResource("RectangleShape2D_3dv3t")
+disabled = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(579, 629)
+shape = SubResource("RectangleShape2D_t7ipw")
+disabled = true
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+wait_time = 0.8
+autostart = true
+
+[node name="Level" parent="." instance=ExtResource("12_rga5m")]
+coin_scene = ExtResource("13_jijjy")
+
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

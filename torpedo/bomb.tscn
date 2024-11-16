@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://porrdfqurpmt"]
+
+[ext_resource type="Texture2D" uid="uid://bed4ng2qau1a6" path="res://sprites/planes/torpedo/torpedo_black.png" id="1_m6fhq"]
+[ext_resource type="Script" path="res://torpedo/bomb.gd" id="1_oarav"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o5otb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_m6fhq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l3oug"]
+radius = 390.252
+height = 780.505
+
+[node name="Bomb" type="Area2D"]
+script = ExtResource("1_oarav")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(40, 0)
+scale = Vector2(0.8, 0.954)
+sprite_frames = SubResource("SpriteFrames_o5otb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D"]
+position = Vector2(-52.5, 0)
+rotation = 0.00724701
+scale = Vector2(0.755804, 0.206434)
+shape = SubResource("CapsuleShape2D_l3oug")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

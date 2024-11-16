@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://chm6smdsn8h7o"]
+
+[ext_resource type="Script" path="res://hud/hud.gd" id="1_xpq4f"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_xpq4f")
+
+[node name="Score" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Score"]
+
+[node name="ScoreText" type="Label" parent="Score"]
+offset_right = 40.0
+offset_bottom = 23.0

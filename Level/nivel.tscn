@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://decx7yqe3ypmj"]
+
+[ext_resource type="Script" path="res://Level/nivel.gd" id="1_3tnel"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_3tnel")
+
+[node name="CoinSpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="CoinSpawnTimer" to="." method="_on_coin_spawn_timer_timeout"]

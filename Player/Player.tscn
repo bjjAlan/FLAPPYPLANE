@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://belnx1xk6wgcw"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_j58yf"]
+[ext_resource type="Texture2D" uid="uid://43pj60xjfwlo" path="res://sprites/planes/plane_1/plane_1_blue.png" id="2_1wejk"]
+[ext_resource type="PackedScene" uid="uid://c2tgym620paht" path="res://bullet/bullet.tscn" id="2_4esfk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_havkv"]
+atlas = ExtResource("2_1wejk")
+region = Rect2(0, 0, 817, 483)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5d0ty"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_havkv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jsnf6"]
+radius = 24.0569
+height = 111.997
+
+[node name="Player" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_j58yf")
+bullet_scene = ExtResource("2_4esfk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.156671, 0.132505)
+sprite_frames = SubResource("SpriteFrames_5d0ty")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.57799
+shape = SubResource("CapsuleShape2D_jsnf6")
