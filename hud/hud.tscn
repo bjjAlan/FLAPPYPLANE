@@ -1,14 +1,99 @@
-[gd_scene load_steps=2 format=3 uid="uid://chm6smdsn8h7o"]
+[gd_scene load_steps=3 format=3 uid="uid://s3dgpbkvcqd5"]
 
-[ext_resource type="Script" path="res://hud/hud.gd" id="1_xpq4f"]
+[ext_resource type="Texture2D" uid="uid://ljsgcswblabo" path="res://sprites/flying_coins/animatable_parts/gold_coin.png" id="1_ok54r"]
+[ext_resource type="Texture2D" uid="uid://43pj60xjfwlo" path="res://sprites/planes/plane_1/plane_1_blue.png" id="2_kpr7j"]
 
 [node name="HUD" type="CanvasLayer"]
-script = ExtResource("1_xpq4f")
+
+[node name="Coins" type="Node2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Coins"]
+position = Vector2(32, 24)
+scale = Vector2(0.0578313, 0.0578313)
+texture = ExtResource("1_ok54r")
+
+[node name="coins_counter" type="Label" parent="Coins"]
+offset_left = 48.0
+offset_top = 16.0
+offset_right = 88.0
+offset_bottom = 40.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 15
+text = "0000"
+vertical_alignment = 1
+
+[node name="Life" type="Node2D" parent="."]
+position = Vector2(0, 600)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Life"]
+position = Vector2(32, 24)
+scale = Vector2(0.0578313, 0.0578313)
+texture = ExtResource("2_kpr7j")
+
+[node name="life_counter" type="Label" parent="Life"]
+offset_left = 64.0
+offset_top = 16.0
+offset_right = 104.0
+offset_bottom = 40.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 15
+text = "X 3"
+vertical_alignment = 1
 
 [node name="Score" type="Node2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="Score"]
+position = Vector2(1152, 8)
+metadata/_edit_group_ = true
 
 [node name="ScoreText" type="Label" parent="Score"]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -120.0
+offset_top = 8.0
+offset_right = -68.0
+offset_bottom = 31.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 15
+text = "SCORE:"
+vertical_alignment = 1
+
+[node name="score_counter" type="Label" parent="Score"]
+offset_left = -64.0
+offset_top = 8.0
+offset_right = -12.0
+offset_bottom = 30.0
+size_flags_horizontal = 8
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 15
+text = "000000"
+vertical_alignment = 1
+
+[node name="Timer" type="Node2D" parent="."]
+position = Vector2(632, 8)
+metadata/_edit_group_ = true
+
+[node name="TimerText" type="Label" parent="Timer"]
+offset_left = -120.0
+offset_top = 8.0
+offset_right = -68.0
+offset_bottom = 31.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 15
+text = "TIMER:"
+vertical_alignment = 1
+
+[node name="Timer_counter" type="Label" parent="Timer"]
+offset_left = -64.0
+offset_top = 8.0
+offset_right = -12.0
+offset_bottom = 30.0
+size_flags_horizontal = 8
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 15
+text = "00:00"
+vertical_alignment = 1

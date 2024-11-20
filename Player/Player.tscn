@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://belnx1xk6wgcw"]
+[gd_scene load_steps=8 format=3 uid="uid://belnx1xk6wgcw"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_j58yf"]
 [ext_resource type="Texture2D" uid="uid://43pj60xjfwlo" path="res://sprites/planes/plane_1/plane_1_blue.png" id="2_1wejk"]
@@ -23,6 +23,10 @@ animations = [{
 radius = 24.0569
 height = 111.997
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2tywx"]
+radius = 32.0
+height = 128.0
+
 [node name="Player" type="RigidBody2D"]
 gravity_scale = 0.0
 script = ExtResource("1_j58yf")
@@ -36,3 +40,11 @@ autoplay = "default"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.57799
 shape = SubResource("CapsuleShape2D_jsnf6")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_2tywx")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

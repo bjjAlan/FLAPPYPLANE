@@ -1,0 +1,256 @@
+[gd_scene load_steps=27 format=3 uid="uid://dvlatt2kwipem"]
+
+[ext_resource type="Script" path="res://word/word.gd" id="1_78h6q"]
+[ext_resource type="PackedScene" uid="uid://belnx1xk6wgcw" path="res://Player/Player.tscn" id="1_nu6aa"]
+[ext_resource type="PackedScene" uid="uid://jfoia1tn0f15" path="res://sprites/explosion_effect/Enemy.tscn" id="2_0e8n5"]
+[ext_resource type="Texture2D" uid="uid://bwu54p0pynvgt" path="res://sprites/sky_background/parallax_parts/sky_color.png" id="3_1lk74"]
+[ext_resource type="Texture2D" uid="uid://dcy4ax1xscnep" path="res://sprites/sky_background/parallax_parts/mid_ground_cloud_1.png" id="4_52ssj"]
+[ext_resource type="Texture2D" uid="uid://yhj1w6oxjdpa" path="res://sprites/sky_background/parallax_parts/sun.png" id="4_selpa"]
+[ext_resource type="Texture2D" uid="uid://ddwkhxuhb7qt3" path="res://sprites/sky_background/parallax_parts/mid_ground_cloud_2.png" id="5_y201p"]
+[ext_resource type="Texture2D" uid="uid://dw0k86a08mi8k" path="res://sprites/sky_background/parallax_parts/mountain_with_hills/farground_mountains.png" id="7_a8rir"]
+[ext_resource type="Texture2D" uid="uid://n4g775bt8i3b" path="res://sprites/sky_background/parallax_parts/farground_cloud_1.png" id="9_cdhx0"]
+[ext_resource type="Texture2D" uid="uid://b0hqr7qqnl0ix" path="res://sprites/sky_background/parallax_parts/mountain_with_hills/foreground_mountains.png" id="9_l81up"]
+[ext_resource type="Texture2D" uid="uid://ndmoj5v3qj14" path="res://sprites/sky_background/parallax_parts/farground_cloud_2.png" id="10_5jxia"]
+[ext_resource type="PackedScene" uid="uid://decx7yqe3ypmj" path="res://Level/nivel.tscn" id="12_rga5m"]
+[ext_resource type="PackedScene" uid="uid://bgb4cbeve0uyv" path="res://coin/Coin.tscn" id="13_jijjy"]
+[ext_resource type="Texture2D" uid="uid://yxgwnub72l2f" path="res://sprites/flying_coins/82410urwr93hi6k5zc6s3l/1.png" id="14_a3ra7"]
+[ext_resource type="Script" path="res://scripts/hud_manager.gd" id="14_hgxtx"]
+[ext_resource type="Texture2D" uid="uid://bsgkj2hr8raf3" path="res://sprites/flying_coins/82410urwr93hi6k5zc6s3l/2.png" id="15_emaar"]
+[ext_resource type="Texture2D" uid="uid://bdc2vag8jkhmi" path="res://sprites/flying_coins/82410urwr93hi6k5zc6s3l/3.png" id="16_w1m16"]
+[ext_resource type="Texture2D" uid="uid://b507c0y2fvql4" path="res://sprites/flying_coins/82410urwr93hi6k5zc6s3l/4.png" id="17_kfuhm"]
+[ext_resource type="Texture2D" uid="uid://c01s0cie582vf" path="res://sprites/flying_coins/82410urwr93hi6k5zc6s3l/5.png" id="18_2cpg7"]
+[ext_resource type="Texture2D" uid="uid://dlb6b3an5kaoh" path="res://sprites/flying_coins/82410urwr93hi6k5zc6s3l/6.png" id="19_h5k2v"]
+[ext_resource type="Texture2D" uid="uid://dvxfqiql728ap" path="res://sprites/flying_coins/82410urwr93hi6k5zc6s3l/7.png" id="20_mtvc6"]
+[ext_resource type="Texture2D" uid="uid://dnixbqe7c6oh" path="res://sprites/flying_coins/82410urwr93hi6k5zc6s3l/8.png" id="21_bitde"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3dv3t"]
+size = Vector2(1175, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t7ipw"]
+size = Vector2(1167.5, 31)
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_w4i7n"]
+frames = 8
+speed_scale = 3.0
+frame_0/texture = ExtResource("14_a3ra7")
+frame_1/texture = ExtResource("15_emaar")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("16_w1m16")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("17_kfuhm")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("18_2cpg7")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("19_h5k2v")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("20_mtvc6")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("21_bitde")
+frame_7/duration = 1.0
+
+[sub_resource type="FontVariation" id="FontVariation_8xwa5"]
+
+[node name="Word" type="Node2D"]
+position = Vector2(1, 15)
+script = ExtResource("1_78h6q")
+enemy_scene = ExtResource("2_0e8n5")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(448, 344)
+scale = Vector2(122.857, 1)
+texture = ExtResource("3_1lk74")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+position = Vector2(288, 192)
+texture = ExtResource("4_selpa")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(456, 440)
+scale = Vector2(0.84375, 1)
+texture = ExtResource("4_52ssj")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2(456, 488)
+scale = Vector2(0.847656, 1.02321)
+texture = ExtResource("5_y201p")
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
+position = Vector2(456, 480)
+scale = Vector2(0.847656, 1)
+texture = ExtResource("7_a8rir")
+
+[node name="ParallaxLayer7" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer7"]
+position = Vector2(464, 572.75)
+scale = Vector2(0.847656, 1.23395)
+texture = ExtResource("9_l81up")
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer6"]
+position = Vector2(452, 112)
+scale = Vector2(0.839844, 1)
+texture = ExtResource("9_cdhx0")
+
+[node name="ParallaxLayer8" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer8"]
+position = Vector2(456, 208)
+scale = Vector2(0.835938, 1)
+texture = ExtResource("10_5jxia")
+
+[node name="Player" parent="." instance=ExtResource("1_nu6aa")]
+position = Vector2(159, 137)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(1, 18)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(574, -47)
+shape = SubResource("RectangleShape2D_3dv3t")
+disabled = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(579, 629)
+shape = SubResource("RectangleShape2D_t7ipw")
+disabled = true
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+wait_time = 0.8
+autostart = true
+
+[node name="Level" parent="." instance=ExtResource("12_rga5m")]
+coin_scene = ExtResource("13_jijjy")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="control" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("14_hgxtx")
+
+[node name="container" type="MarginContainer" parent="HUD/control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="coins_container" type="HBoxContainer" parent="HUD/control/container"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="coins_icon" type="TextureRect" parent="HUD/control/container/coins_container"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = SubResource("AnimatedTexture_w4i7n")
+
+[node name="coins_counter" type="Label" parent="HUD/control/container/coins_container"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = SubResource("FontVariation_8xwa5")
+theme_override_font_sizes/font_size = 8
+text = "0000"
+vertical_alignment = 1
+
+[node name="timer_container" type="HBoxContainer" parent="HUD/control/container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="timer_label" type="Label" parent="HUD/control/container/timer_container"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = SubResource("FontVariation_8xwa5")
+theme_override_font_sizes/font_size = 8
+text = "TIME:"
+vertical_alignment = 1
+
+[node name="timer_counter" type="Label" parent="HUD/control/container/timer_container"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = SubResource("FontVariation_8xwa5")
+theme_override_font_sizes/font_size = 8
+text = "00:00"
+vertical_alignment = 1
+
+[node name="score_container" type="HBoxContainer" parent="HUD/control/container"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="score_label" type="Label" parent="HUD/control/container/score_container"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = SubResource("FontVariation_8xwa5")
+theme_override_font_sizes/font_size = 8
+text = "SCORE:
+"
+vertical_alignment = 1
+
+[node name="score_counter" type="Label" parent="HUD/control/container/score_container"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = SubResource("FontVariation_8xwa5")
+theme_override_font_sizes/font_size = 8
+text = "000000"
+vertical_alignment = 1
+
+[node name="life_container" type="HBoxContainer" parent="HUD/control/container"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="life_icon" type="TextureRect" parent="HUD/control/container/life_container"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="life_separetor" type="Label" parent="HUD/control/container/life_container"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = SubResource("FontVariation_8xwa5")
+theme_override_font_sizes/font_size = 8
+text = "X"
+vertical_alignment = 1
+
+[node name="life_counter" type="Label" parent="HUD/control/container/life_container"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = SubResource("FontVariation_8xwa5")
+theme_override_font_sizes/font_size = 8
+text = "03"
+vertical_alignment = 1
+
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

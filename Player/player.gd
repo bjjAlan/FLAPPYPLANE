@@ -1,14 +1,14 @@
 extends RigidBody2D 
 
-@export var bullet_scene: PackedScene  # Adiciona esta linha para declarar a cena do projétil
+@export var bullet_scene: PackedScene
+  
 var speed: float = 64 * 0.4
 var animated_sprite
-var coins = 0    
 
 func _ready():
 	animated_sprite = $AnimatedSprite2D
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	global_position.x = 159
 	animated_sprite.play("default")
 	
@@ -30,18 +30,27 @@ func _physics_process(delta):
 	else:
 		global_position.y = get_viewport().size.y - 28
 
-	# Atirar projétil
-	if Input.is_action_just_pressed("shoot"):  # qualquer botão pode ser usado
-		var bullet = bullet_scene.instantiate() 
-		bullet.shooter = self  # eu atirei
-		bullet.position = self.position + Vector2(64, 0)  # posição inicial
-		bullet.direction = Vector2(1, 0)  # direção para a direita
-		get_parent().add_child(bullet)  # adicionar como filho de Level
+	# Atirar projétil com a ação "shoot"
+	if Input.is_action_just_pressed("shoot"):
+		var bullet = bullet_scene.instantiate()
+		bullet.shooter = self
+		bullet.position = self.position + Vector2(64, 0)
+		bullet.direction = Vector2(1, 0)
+		get_parent().add_child(bullet)
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	
+	if body.is_in_group("Enemy"):
 		
-	# Atirar bomba
-	if Input.is_action_just_pressed("bomb"):  # qualquer botão pode ser usado
-		var bomb = Bomb_scene.instantiate() 
-		bomb.shooter = self  # eu atirei
-		bomb.position = self.position + Vector2(64, 0)  # posição inicial
-		bomb.direction = Vector2(1, 0)  # direção para a direita
-		get_parent().add_child(bomb)
+		await get_tree().create_timer(0.1).timeout
+		get_tree().reload_current_scene()
+	
+	if body.name == "Player":
+		Globals.life -= 1
+		Globals.score = 0
+		Globals.coins = 0
+		#await get_tree().create_timer(0.3).timeout
+	pass 
+	
+	
