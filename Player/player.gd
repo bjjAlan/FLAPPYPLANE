@@ -10,7 +10,7 @@ func _ready():
 
 func _physics_process(_delta):
 	global_position.x = 159
-	animated_sprite.play("default")
+	animated_sprite.play("")
 	
 	if global_position.y >= 28:
 		if Input.is_action_pressed("ui_up"):
@@ -42,15 +42,14 @@ func _physics_process(_delta):
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	
 	if body.is_in_group("Enemy"):
-		
-		await get_tree().create_timer(0.1).timeout
+		$AnimatedSprite2D.play("Death")
+		$AnimatedSprite2D.scale = Vector2 (0.30, 0.30)
+		await get_tree().create_timer(0.7).timeout
 		get_tree().reload_current_scene()
-	
-	if body.name == "Player":
+		
+		
 		Globals.life -= 1
 		Globals.score = 0
 		Globals.coins = 0
-		#await get_tree().create_timer(0.3).timeout
+		
 	pass 
-	
-	

@@ -2,7 +2,7 @@ extends Node
 
 var score := 0
 var coins := 0
-var life := 4
+var life := 3
 
 
 func _ready():
@@ -11,7 +11,7 @@ func _ready():
 	
 	
 	
-func _process(delta):
+func _process(_delta):
 	
 	Death()
 	

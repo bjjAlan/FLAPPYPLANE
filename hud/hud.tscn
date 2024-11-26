@@ -1,19 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://s3dgpbkvcqd5"]
+[gd_scene load_steps=4 format=3 uid="uid://s3dgpbkvcqd5"]
 
 [ext_resource type="Texture2D" uid="uid://ljsgcswblabo" path="res://sprites/flying_coins/animatable_parts/gold_coin.png" id="1_ok54r"]
 [ext_resource type="Texture2D" uid="uid://43pj60xjfwlo" path="res://sprites/planes/plane_1/plane_1_blue.png" id="2_kpr7j"]
+[ext_resource type="Script" path="res://Hud/control.gd" id="3_woe3p"]
 
 [node name="HUD" type="CanvasLayer"]
 
-[node name="Coins" type="Node2D" parent="."]
+[node name="control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_woe3p")
+
+[node name="Coins" type="Node2D" parent="control"]
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Coins"]
+[node name="Sprite2D" type="Sprite2D" parent="control/Coins"]
 position = Vector2(32, 24)
 scale = Vector2(0.0578313, 0.0578313)
 texture = ExtResource("1_ok54r")
 
-[node name="coins_counter" type="Label" parent="Coins"]
+[node name="coins_counter" type="Label" parent="control/Coins"]
 offset_left = 48.0
 offset_top = 16.0
 offset_right = 88.0
@@ -24,16 +34,16 @@ theme_override_font_sizes/font_size = 15
 text = "0000"
 vertical_alignment = 1
 
-[node name="Life" type="Node2D" parent="."]
+[node name="Life" type="Node2D" parent="control"]
 position = Vector2(0, 600)
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Life"]
+[node name="Sprite2D" type="Sprite2D" parent="control/Life"]
 position = Vector2(32, 24)
 scale = Vector2(0.0578313, 0.0578313)
 texture = ExtResource("2_kpr7j")
 
-[node name="life_counter" type="Label" parent="Life"]
+[node name="life_counter" type="Label" parent="control/Life"]
 offset_left = 64.0
 offset_top = 16.0
 offset_right = 104.0
@@ -44,26 +54,37 @@ theme_override_font_sizes/font_size = 15
 text = "X 3"
 vertical_alignment = 1
 
-[node name="Score" type="Node2D" parent="."]
-position = Vector2(1152, 8)
+[node name="ClockTimer" type="Timer" parent="control"]
+autostart = true
+
+[node name="container" type="MarginContainer" parent="control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Score" type="HBoxContainer" parent="control/container"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
 metadata/_edit_group_ = true
 
-[node name="ScoreText" type="Label" parent="Score"]
-offset_left = -120.0
-offset_top = 8.0
-offset_right = -68.0
-offset_bottom = 31.0
+[node name="ScoreText" type="Label" parent="control/container/Score"]
+layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 15
 text = "SCORE:"
 vertical_alignment = 1
 
-[node name="score_counter" type="Label" parent="Score"]
-offset_left = -64.0
-offset_top = 8.0
-offset_right = -12.0
-offset_bottom = 30.0
+[node name="score_counter" type="Label" parent="control/container/Score"]
+layout_mode = 2
 size_flags_horizontal = 8
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
@@ -71,29 +92,27 @@ theme_override_font_sizes/font_size = 15
 text = "000000"
 vertical_alignment = 1
 
-[node name="Timer" type="Node2D" parent="."]
-position = Vector2(632, 8)
+[node name="Timer" type="HBoxContainer" parent="control/container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
 metadata/_edit_group_ = true
 
-[node name="TimerText" type="Label" parent="Timer"]
-offset_left = -120.0
-offset_top = 8.0
-offset_right = -68.0
-offset_bottom = 31.0
+[node name="TimerText" type="Label" parent="control/container/Timer"]
+layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 15
 text = "TIMER:"
 vertical_alignment = 1
 
-[node name="Timer_counter" type="Label" parent="Timer"]
-offset_left = -64.0
-offset_top = 8.0
-offset_right = -12.0
-offset_bottom = 30.0
+[node name="timer_counter" type="Label" parent="control/container/Timer"]
+layout_mode = 2
 size_flags_horizontal = 8
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 15
 text = "00:00"
 vertical_alignment = 1
+
+[connection signal="timeout" from="control/ClockTimer" to="control" method="_on_clock_timer_timeout"]

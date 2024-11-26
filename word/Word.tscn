@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://word/word.gd" id="1_78h6q"]
 [ext_resource type="PackedScene" uid="uid://belnx1xk6wgcw" path="res://Player/Player.tscn" id="1_nu6aa"]
-[ext_resource type="PackedScene" uid="uid://jfoia1tn0f15" path="res://sprites/explosion_effect/Enemy.tscn" id="2_0e8n5"]
+[ext_resource type="PackedScene" uid="uid://dcj1fgw7a1wg1" path="res://sprites/explosion_effect/Enemy.tscn" id="2_0e8n5"]
 [ext_resource type="Texture2D" uid="uid://bwu54p0pynvgt" path="res://sprites/sky_background/parallax_parts/sky_color.png" id="3_1lk74"]
 [ext_resource type="Texture2D" uid="uid://dcy4ax1xscnep" path="res://sprites/sky_background/parallax_parts/mid_ground_cloud_1.png" id="4_52ssj"]
 [ext_resource type="Texture2D" uid="uid://yhj1w6oxjdpa" path="res://sprites/sky_background/parallax_parts/sun.png" id="4_selpa"]
@@ -13,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://ndmoj5v3qj14" path="res://sprites/sky_background/parallax_parts/farground_cloud_2.png" id="10_5jxia"]
 [ext_resource type="PackedScene" uid="uid://decx7yqe3ypmj" path="res://Level/nivel.tscn" id="12_rga5m"]
 [ext_resource type="PackedScene" uid="uid://bgb4cbeve0uyv" path="res://coin/Coin.tscn" id="13_jijjy"]
-[ext_resource type="Script" path="res://scripts/hud.gd" id="15_fyvgq"]
 [ext_resource type="PackedScene" uid="uid://s3dgpbkvcqd5" path="res://Hud/hud.tscn" id="23_nbe26"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3dv3t"]
@@ -21,6 +20,8 @@ size = Vector2(1175, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t7ipw"]
 size = Vector2(1167.5, 31)
+
+[sub_resource type="GDScript" id="GDScript_tr6u5"]
 
 [node name="Word" type="Node2D"]
 position = Vector2(1, 15)
@@ -108,6 +109,6 @@ autostart = true
 coin_scene = ExtResource("13_jijjy")
 
 [node name="HUD" parent="." instance=ExtResource("23_nbe26")]
-script = ExtResource("15_fyvgq")
+script = SubResource("GDScript_tr6u5")
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

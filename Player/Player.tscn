@@ -1,8 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://belnx1xk6wgcw"]
+[gd_scene load_steps=17 format=3 uid="uid://belnx1xk6wgcw"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_j58yf"]
 [ext_resource type="Texture2D" uid="uid://43pj60xjfwlo" path="res://sprites/planes/plane_1/plane_1_blue.png" id="2_1wejk"]
 [ext_resource type="PackedScene" uid="uid://c2tgym620paht" path="res://bullet/bullet.tscn" id="2_4esfk"]
+[ext_resource type="Texture2D" uid="uid://r5w3dq81cwr7" path="res://sprites/explosion_effect/keyframes/explosion_01.png" id="3_10pws"]
+[ext_resource type="Texture2D" uid="uid://c2xgambw0u5t3" path="res://sprites/explosion_effect/keyframes/explosion_02.png" id="4_4o0yk"]
+[ext_resource type="Texture2D" uid="uid://durp4pgrnas7w" path="res://sprites/explosion_effect/keyframes/explosion_03.png" id="5_2ogxw"]
+[ext_resource type="Texture2D" uid="uid://cygowpd4fuq2" path="res://sprites/explosion_effect/keyframes/explosion_04.png" id="6_nsjpw"]
+[ext_resource type="Texture2D" uid="uid://djq47c76jwssv" path="res://sprites/explosion_effect/keyframes/explosion_05.png" id="7_877uv"]
+[ext_resource type="Texture2D" uid="uid://b8pngumntkm63" path="res://sprites/explosion_effect/keyframes/explosion_06.png" id="8_j6uxm"]
+[ext_resource type="Texture2D" uid="uid://bk8qer22pvxif" path="res://sprites/explosion_effect/keyframes/explosion_07.png" id="9_t8mqa"]
+[ext_resource type="Texture2D" uid="uid://c8f48t58lkqu4" path="res://sprites/explosion_effect/keyframes/explosion_08.png" id="10_aksuj"]
+[ext_resource type="Texture2D" uid="uid://j60g4qsvu3h7" path="res://sprites/explosion_effect/keyframes/explosion_09.png" id="11_cyt40"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_havkv"]
 atlas = ExtResource("2_1wejk")
@@ -12,10 +21,42 @@ region = Rect2(0, 0, 817, 483)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("3_10pws")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4o0yk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2ogxw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_nsjpw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_877uv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_j6uxm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_t8mqa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_aksuj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_cyt40")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_havkv")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Idle",
 "speed": 5.0
 }]
 
@@ -33,15 +74,18 @@ script = ExtResource("1_j58yf")
 bullet_scene = ExtResource("2_4esfk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.156671, 0.132505)
+scale = Vector2(0.14, 0.14)
 sprite_frames = SubResource("SpriteFrames_5d0ty")
-autoplay = "default"
+animation = &"Death"
+autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 rotation = 1.57799
 shape = SubResource("CapsuleShape2D_jsnf6")
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 rotation = 1.5708

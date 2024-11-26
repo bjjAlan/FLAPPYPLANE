@@ -6,6 +6,7 @@
 script = ExtResource("1_3tnel")
 
 [node name="CoinSpawnTimer" type="Timer" parent="."]
+wait_time = 1.5
 autostart = true
 
 [connection signal="timeout" from="CoinSpawnTimer" to="." method="_on_coin_spawn_timer_timeout"]
